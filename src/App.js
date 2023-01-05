@@ -1,7 +1,14 @@
 import React from 'react';
+
 import { Button } from '@progress/kendo-react-buttons';
 import kendoka from './kendoka.svg';
 import './App.scss';
+import { Calendar } from "@progress/kendo-react-dateinputs";
+import { Grid, GridColumn } from "@progress/kendo-react-grid";
+import { DropDownList } from "@progress/kendo-react-dropdowns";
+import products from "./products.json";
+import categories from "./categories.json";
+
 
 function App() {
   const handleClick = React.useCallback(() => {
@@ -9,22 +16,33 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={kendoka} className="App-logo" alt="kendoka" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <Button
-          themeColor={'primary'}
-          size={"large"}
-          onClick={handleClick}
-        >
-          Learn KendoReact
-        </Button>
-      </header>
-    </div>
-  );
-}
+  <div className="App">
+    <h1>Hello KendoReact!</h1>
+    <Calendar />
+   
+  
+  <div className='Grid'>
+    <Grid data={products}>
+  <GridColumn field="ProductName" />
+  <GridColumn field="UnitPrice" />
+  <GridColumn field="UnitsInStock" />
+  <GridColumn field="Discontinued" />
+</Grid>
+  </div>
+  <div className='droup-down'>
+  <p>
+  <DropDownList
+    data={categories}
+    dataItemKey="CategoryID"
+    textField="CategoryName"
+    
+  />
+</p>
+  </div>
+  
+
+  </div>
+);
+  }
 
 export default App;
